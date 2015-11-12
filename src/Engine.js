@@ -28,7 +28,7 @@ var Engine = function () {
 
 // public methods
 
-    this.getCase = function (i, j) {
+    this.getValuePos = function (i, j) {
 
         return plateau[i][j];
     };
@@ -44,7 +44,6 @@ var Engine = function () {
         }
         return true;
     };
-
 
     createPlateau();
 };
