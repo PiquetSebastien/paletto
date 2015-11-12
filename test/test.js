@@ -19,3 +19,12 @@ PalettoTestCase.prototype.testStory2 = function () {
     assertTrue(e.jouerCoup(0,5));
     assertTrue(e.getValuePos(0,5) === "Yellow");
 };
+
+
+PalettoTestCase.prototype.testStory3 = function () {
+
+    var e = new Engine();
+    e.jouerCoup("A6");
+    assertTrue(e.getNbPions() === 35);
+    assertTrue(e.getPionsJoueurs(1,"Yellow") === 1);
+};
