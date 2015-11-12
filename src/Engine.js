@@ -7,8 +7,12 @@ function FirstPlayex() {
 var Engine = function () {
 
 // private attributes and methods
-    var plateau;
+    var plateau, nbPions = 36;
     var i, j;
+    var joueurActuel = 1;
+    var firstcoup = true;
+    var joueur1 = {"Black": 0, "Green": 0, "White": 0, "Blue": 0, "Red": 0, "Yellow": 0 };
+    var joueur2 = {"Black": 0, "Green": 0, "White": 0, "Blue": 0, "Red": 0, "Yellow": 0 };
 
     var initPlateau = function () {
 
@@ -30,7 +34,32 @@ var Engine = function () {
         initPlateau();
     };
 
+    var getCoup = function (coup) {
+        var colonne = coup.charCodeAt(1) - "1".charCodeAt(0);
+        var ligne = coup.charCodeAt(0) - "A".charCodeAt(0);
+        return {"l": ligne, "c": colonne};
+    };
+
+    var setPionsJoueurs = function(player, couleur) {
+
+        if (player === 1) {
+            joueur1[couleur] += 1;
+        } else {
+            joueur2[couleur] += 1;
+        }
+    };
+
+    var deletePiece = function (i, j) {
+
+
+    };
+
 // public methods
+
+    this.getNbPions = function () {
+
+        return nbPions;
+    };
 
     this.getValuePos = function (i, j) {
 
@@ -49,11 +78,34 @@ var Engine = function () {
         return true;
     };
 
-    this.jouerCoup = function (i, j) {
+    this.verifPremiercoup = function (i, j) {
 
-        if (i === 0 && j === 0 || i === 0 && j === 5 || i === 5 && j === 0 || i === 5 && j === 5){
-            return true;
-        } else { throw new FirstPlayex(); }
+        if (firstcoup) {
+            if ((i === 0 && j === 0) || (i === 0 && j === 5) || (i === 5 && j === 0) || (i === 5 && j === 5)) {
+                firstcoup = false;
+                return true;
+            } else {
+                throw new FirstPlayex();
+            }
+        }
+    };
+
+    this.jouerCoup = function (coup) {
+
+
+        //besoin d'ajouter verPremierCoup
+        var moove = getCoup(coup);
+        nbPions -= 1;
+        var color = this.getValuePos(moove.l, moove.c);
+        setPionsJoueurs(joueurActuel, color);
+        plateau[moove.l][moove.c] = 0;
+    };
+
+    this.getPionsJoueurs = function (player, couleur){
+
+        if (player === 1) {
+            return joueur1[couleur];
+        }
     };
     createPlateau();
 };

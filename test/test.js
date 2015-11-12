@@ -16,7 +16,7 @@ PalettoTestCase.prototype.testStory1 = function () {
 PalettoTestCase.prototype.testStory2 = function () {
 
     var e = new Engine();
-    assertTrue(e.jouerCoup(0,5));
+    assertTrue(e.verifPremiercoup(0,5));
     assertTrue(e.getValuePos(0,5) === "Yellow");
 };
 
