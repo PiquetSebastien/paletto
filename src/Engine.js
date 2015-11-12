@@ -4,7 +4,7 @@ var Engine = function () {
 
 // private attributes and methods
     var plateau;
-    var i;
+    var i, j;
 
     var initPlateau = function () {
 
@@ -32,5 +32,19 @@ var Engine = function () {
 
         return plateau[i][j];
     };
+
+    this.verifJuxtaposition = function () {
+
+        for (i = 0; i < 5; i++) {
+            for (j = 0; j < 5; j++) {
+                if (plateau[i][j] === plateau[i + 1][j] || plateau[i][j] === plateau[i][j + 1]) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    };
+
+
     createPlateau();
 };

@@ -10,4 +10,5 @@ PalettoTestCase.prototype.testStory1 = function () {
             assertTrue(e.getCase(i, j) !== undefined);
         }
     }
+    assertTrue(e.verifJuxtaposition());
 };
