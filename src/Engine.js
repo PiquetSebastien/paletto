@@ -40,7 +40,7 @@ var Engine = function () {
         return {"l": ligne, "c": colonne};
     };
 
-    var setPionsJoueurs = function(player, couleur) {
+    var setPionsJoueurs = function (player, couleur) {
 
         if (player === 1) {
             joueur1[couleur] += 1;
@@ -49,15 +49,14 @@ var Engine = function () {
         }
     };
 
-    var deletePiece = function (i, j) {
-
-
+    var deletePiece = function (coup) {
+        var moove = getCoup(coup);
+        plateau[moove.l][moove.c] = 0;
     };
 
 // public methods
 
     this.getNbPions = function () {
-
         return nbPions;
     };
 
@@ -84,24 +83,24 @@ var Engine = function () {
             if ((i === 0 && j === 0) || (i === 0 && j === 5) || (i === 5 && j === 0) || (i === 5 && j === 5)) {
                 firstcoup = false;
                 return true;
-            } else {
-                throw new FirstPlayex();
             }
+            throw new FirstPlayex();
         }
     };
 
     this.jouerCoup = function (coup) {
 
-
-        //besoin d'ajouter verPremierCoup
         var moove = getCoup(coup);
+        if (nbPions === 36) {
+            this.verifPremiercoup(moove.l, moove.c);
+        }
         nbPions -= 1;
         var color = this.getValuePos(moove.l, moove.c);
         setPionsJoueurs(joueurActuel, color);
-        plateau[moove.l][moove.c] = 0;
+        deletePiece(coup);
     };
 
-    this.getPionsJoueurs = function (player, couleur){
+    this.getPionsJoueurs = function (player, couleur) {
 
         if (player === 1) {
             return joueur1[couleur];
