@@ -29,3 +29,15 @@ PalettoTestCase.prototype.testStory3 = function () {
     assertTrue(e.getPionsJoueurs(1,"Yellow") === 1);
     assertTrue(e.getValuePos(0,5) === 0);
 };
+
+
+PalettoTestCase.prototype.testStory4 = function () {
+
+    var e = new Engine();
+    e.jouerCoup("A6");
+    e.nextPlayer();
+    e.jouerCoup("A1");
+    e.jouerCoup("F6");
+    assertTrue(e.getPionsJoueurs(2, "Black") === 2);
+
+};
