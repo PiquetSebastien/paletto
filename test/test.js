@@ -46,3 +46,29 @@ PalettoTestCase.prototype.testStory6 = function () {
     e.jouerCoup("B4");e.nextPlayer();
     assertTrue(e.getwinner() === 1);
 };
+
+PalettoTestCase.prototype.testStory7 = function () {
+
+    var e = new Engine();
+    e.jouerCoup("A1");e.jouerCoup("F6");e.nextPlayer();
+    e.jouerCoup("A2");e.jouerCoup("A6");e.nextPlayer();
+    e.jouerCoup("A5");e.jouerCoup("F1");e.nextPlayer();
+    e.jouerCoup("E6");e.jouerCoup("B1");e.jouerCoup("F5");e.nextPlayer();
+    e.jouerCoup("A3");e.jouerCoup("F2");e.nextPlayer();
+    e.jouerCoup("C1");e.jouerCoup("F4");e.nextPlayer();
+    e.jouerCoup("E1");e.jouerCoup("D6");e.jouerCoup("A4");e.jouerCoup("F3");e.nextPlayer();
+    e.jouerCoup("D1");e.jouerCoup("B6");e.nextPlayer();
+    e.jouerCoup("E2");e.jouerCoup("E5");e.nextPlayer();
+    e.jouerCoup("C6");e.jouerCoup("D5");e.jouerCoup("E3");e.nextPlayer();
+    e.jouerCoup("B5");e.nextPlayer();
+    e.jouerCoup("D2");e.nextPlayer();
+    e.jouerCoup("B2");e.jouerCoup("D3");e.nextPlayer();
+    e.jouerCoup("E4");e.nextPlayer();
+    e.jouerCoup("C5");e.jouerCoup("B3");e.nextPlayer();
+    e.jouerCoup("D4");e.jouerCoup("C2");e.nextPlayer();
+    e.jouerCoup("C3");e.nextPlayer();
+    e.jouerCoup("B4");e.nextPlayer();
+    e.jouerCoup("C4");e.nextPlayer();
+
+    assertTrue(e.getwinner() === 1);
+};
