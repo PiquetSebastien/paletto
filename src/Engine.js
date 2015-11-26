@@ -54,6 +54,66 @@ var Engine = function () {
         plateau[moove.l][moove.c] = 0;
     };
 
+    var checkBordTop = function(l,c) {
+        if(c !== 0){
+            return true;
+        }else {
+            return false;
+        }
+    };
+
+    var checkBordBot = function(l,c) {
+        if(c !== 5){
+            return true;
+        }else {
+            return false;
+        }
+    };
+
+    var checkBordRight = function(l,c) {
+        if(l !== 5){
+            return true;
+        }else {
+            return false;
+        }
+    };
+
+    var checkBordLeft = function(l,c) {
+        if(l !== 0) {
+            return true;
+        }else {
+            return false;
+        }
+    };
+
+    var checkPlay = function (l,c) {
+
+        var cpt = 0;
+
+        if (checkBordTop(l,c)){
+            if(plateau[l][c-1] !== 0) cpt += 1;
+        }
+
+        if (checkBordBot(l,c)){
+            if(plateau[l][c+1] !== 0) cpt += 1;
+        }
+
+        if (checkBordRight(l,c)){
+            if(plateau[l+1][c] !== 0) cpt += 1;
+        }
+
+        if (checkBordLeft(l,c)){
+            if(plateau[l-1][c] !== 0) cpt += 1;
+        }
+
+        if (cpt <=2){
+            return true;
+        }else{
+            return false;
+        }
+
+    };
+
 // public methods
 
     this.getNbPions = function () {
@@ -95,16 +155,27 @@ var Engine = function () {
             this.verifPremiercoup(moove.l, moove.c);
         }
         nbPions -= 1;
-        var color = this.getValuePos(moove.l, moove.c);
-        setPionsJoueurs(joueurActuel, color);
-        deletePiece(coup);
+        if(checkPlay(moove.l, moove.c)) {
+            var color = this.getValuePos(moove.l, moove.c);
+            setPionsJoueurs(joueurActuel, color);
+            deletePiece(coup);
+        }
     };
 
     this.getPionsJoueurs = function (player, couleur) {
 
         if (player === 1) {
             return joueur1[couleur];
+        }else {
+            return joueur2[couleur];
         }
     };
+
+    this.nextPlayer = function() {
+        joueurActuel = (joueurActuel === 1) ? 2 : 1;
+    };
+
+
     createPlateau();
+
 };
