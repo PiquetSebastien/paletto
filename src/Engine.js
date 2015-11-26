@@ -54,74 +54,76 @@ var Engine = function () {
         plateau[moove.l][moove.c] = 0;
     };
 
-    var checkBordTop = function(l,c) {
-        if(c !== 0){
+    var checkBordTop = function (c) {
+        if (c !== 0) {
             return true;
-        }else {
-            return false;
         }
+        return false;
     };
 
-    var checkBordBot = function(l,c) {
-        if(c !== 5){
+    var checkBordBot = function (c) {
+        if (c !== 5) {
             return true;
-        }else {
-            return false;
         }
+        return false;
     };
 
-    var checkBordRight = function(l,c) {
-        if(l !== 5){
+    var checkBordRight = function (l) {
+        if (l !== 5) {
             return true;
-        }else {
-            return false;
         }
+        return false;
     };
 
-    var checkBordLeft = function(l,c) {
-        if(l !== 0) {
+    var checkBordLeft = function (l) {
+        if (l !== 0) {
             return true;
-        }else {
-            return false;
         }
+        return false;
     };
 
-    var checkPlay = function (l,c) {
+    var checkPlay = function (l, c) {
 
         var cpt = 0;
 
-        if (checkBordTop(l,c)){
-            if(plateau[l][c-1] !== 0) cpt += 1;
+        if (checkBordTop(c)) {
+            if (plateau[l][c - 1] !== 0) {
+                cpt += 1;
+            }
         }
 
-        if (checkBordBot(l,c)){
-            if(plateau[l][c+1] !== 0) cpt += 1;
+        if (checkBordBot(c)) {
+            if (plateau[l][c + 1] !== 0) {
+                cpt += 1;
+            }
         }
 
-        if (checkBordRight(l,c)){
-            if(plateau[l+1][c] !== 0) cpt += 1;
+        if (checkBordRight(l)) {
+            if (plateau[l + 1][c] !== 0) {
+                cpt += 1;
+            }
         }
 
-        if (checkBordLeft(l,c)){
-            if(plateau[l-1][c] !== 0) cpt += 1;
+        if (checkBordLeft(l)) {
+            if (plateau[l - 1][c] !== 0) {
+                cpt += 1;
+            }
         }
 
-        if (cpt <=2){
+        if (cpt <= 2) {
             return true;
-        }else{
-            return false;
         }
-
+        return false;
     };
 
-    this.checkwinner = function() {
-        if (this.getPionsJoueurs(joueurActuel,"Black") ===6 || this.getPionsJoueurs(joueurActuel,"Green") ===6 ||
-            this.getPionsJoueurs(joueurActuel,"White") ===6 || this.getPionsJoueurs(joueurActuel,"Blue") ===6 ||
-            this.getPionsJoueurs(joueurActuel,"red") ===6 || this.getPionsJoueurs(joueurActuel,"Yellow") ===6 ) {
+    this.checkwinner = function () {
+        if (this.getPionsJoueurs(joueurActuel, "Black") === 6 || this.getPionsJoueurs(joueurActuel, "Green") === 6 ||
+            this.getPionsJoueurs(joueurActuel, "White") === 6 || this.getPionsJoueurs(joueurActuel, "Blue") === 6 ||
+            this.getPionsJoueurs(joueurActuel, "red") === 6 || this.getPionsJoueurs(joueurActuel, "Yellow") === 6) {
 
             winner = joueurActuel;
         }
-        if(nbPions === 0){
+        if (nbPions === 0) {
             winner = joueurActuel;
         }
     };
@@ -166,7 +168,7 @@ var Engine = function () {
             this.verifPremiercoup(moove.l, moove.c);
         }
         nbPions -= 1;
-        if(checkPlay(moove.l, moove.c)) {
+        if (checkPlay(moove.l, moove.c)) {
             var color = this.getValuePos(moove.l, moove.c);
             setPionsJoueurs(joueurActuel, color);
             deletePiece(coup);
@@ -178,18 +180,17 @@ var Engine = function () {
 
         if (player === 1) {
             return joueur1[couleur];
-        }else {
-            return joueur2[couleur];
         }
+        return joueur2[couleur];
     };
 
-    this.nextPlayer = function() {
+    this.nextPlayer = function () {
         joueurActuel = (joueurActuel === 1) ? 2 : 1;
     };
 
-    this.getwinner = function (){
+    this.getwinner = function () {
         return winner;
-    }
+    };
 
 
     createPlateau();
