@@ -44,5 +44,5 @@ PalettoTestCase.prototype.testStory6 = function () {
     e.jouerCoup("C6");e.jouerCoup("D5");e.jouerCoup("E3");e.nextPlayer();
     e.jouerCoup("B5");e.nextPlayer();
     e.jouerCoup("B4");e.nextPlayer();
-    assertTrue(e.getPionsJoueurs(1,"Black") === 6);
+    assertTrue(e.getwinner() === 1);
 };

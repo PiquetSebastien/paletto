@@ -9,7 +9,7 @@ var Engine = function () {
 // private attributes and methods
     var plateau, nbPions = 36;
     var i, j;
-    var joueurActuel = 1;
+    var joueurActuel = 1, winner;
     var firstcoup = true;
     var joueur1 = {"Black": 0, "Green": 0, "White": 0, "Blue": 0, "Red": 0, "Yellow": 0 };
     var joueur2 = {"Black": 0, "Green": 0, "White": 0, "Blue": 0, "Red": 0, "Yellow": 0 };
@@ -114,6 +114,14 @@ var Engine = function () {
 
     };
 
+    this.checkwinner = function() {
+        if (this.getPionsJoueurs(joueurActuel,"Black") ===6 || this.getPionsJoueurs(joueurActuel,"Green") ===6 ||
+            this.getPionsJoueurs(joueurActuel,"White") ===6 || this.getPionsJoueurs(joueurActuel,"Blue") ===6 ||
+            this.getPionsJoueurs(joueurActuel,"red") ===6 || this.getPionsJoueurs(joueurActuel,"Yellow") ===6 ) {
+
+            winner = joueurActuel;
+        }
+    };
 // public methods
 
     this.getNbPions = function () {
@@ -159,6 +167,7 @@ var Engine = function () {
             var color = this.getValuePos(moove.l, moove.c);
             setPionsJoueurs(joueurActuel, color);
             deletePiece(coup);
+            this.checkwinner();
         }
     };
 
@@ -174,6 +183,10 @@ var Engine = function () {
     this.nextPlayer = function() {
         joueurActuel = (joueurActuel === 1) ? 2 : 1;
     };
+
+    this.getwinner = function (){
+        return winner;
+    }
 
 
     createPlateau();
