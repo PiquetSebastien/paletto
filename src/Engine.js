@@ -121,6 +121,9 @@ var Engine = function () {
 
             winner = joueurActuel;
         }
+        if(nbPions === 0){
+            winner = joueurActuel;
+        }
     };
 // public methods
 
